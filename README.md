@@ -1,119 +1,98 @@
-**Time Series Analysis of All I Want for Christmas Is You**
+# Time Series Analysis of All I Want for Christmas Is You
 
-This project performs a time series analysis of the popularity of Mariah Carey’s All I Want for Christmas Is You using Google Trends data (2004–present). The goal is to explore seasonal patterns, trends, and predictive performance using classical regression and autoregressive models.
+This project performs a time series analysis of the popularity of Mariah Carey’s *All I Want for Christmas Is You* using Google Trends data from 2004 to the present. The objective is to examine long-term trends, seasonal behavior, and model performance using classical regression and autoregressive techniques in R.
 
-The analysis was completed as part of an academic forecasting assignment and demonstrates practical applications of time series modeling in R.
+The analysis was completed as part of an academic forecasting assignment and demonstrates applied time series modeling.
 
-**Project Overview**
+---
 
-Song: All I Want for Christmas Is You (Mariah Carey, 1994)
+## Project Overview
 
-Data Source: Google Trends
+- Song: All I Want for Christmas Is You (Mariah Carey, 1994)
+- Data Source: Google Trends
+- Time Period: 2004 – Present
+- Frequency: Monthly
+- Additional Variable: Google Trends search interest for the term “Winter”
 
-Time Period: 2004 – Present (monthly frequency)
+The project focuses on:
+- Identifying long-term trends in search popularity
+- Capturing strong seasonal patterns
+- Evaluating the effect of related seasonal search terms
+- Comparing model performance using AIC and RMSE
 
-Secondary Variable: Google Trends search interest for the term “Winter”
+---
 
-The project investigates:
+## Tech Stack
 
-Long-term trends in song popularity
+- Language: R
+- Libraries:
+  - astsa
+  - dplyr
+  - tseries
+  - forecast
 
-Seasonal effects
+---
 
-The impact of related search terms
+## Repository Structure
 
-Model comparison using AIC and RMSE
-
-** Tech Stack**
-
-Language: R
-
-Libraries Used:
-
-astsa
-
-dplyr
-
-tseries
-
-forecast
-
-📁 Project Structure
-├── AIWFCIY.nb.html          # Rendered analysis notebook
-├── AIWFCIY.knit / .Rmd     # R Markdown source (if included)
+├── AIWFCIY.nb.html
+├── AIWFCIY.Rmd
 ├── AIWFCIY All Time Trends.csv
 ├── Winter.csv
-├── pdf.pdf                 # Assignment submission / report
+├── pdf.pdf
 └── README.md
-**
- Methodology
-**
-1. Data Cleaning
-
-Converted Google Trends values of <1 to 0.5
-
-Converted all counts to numeric
-
-Constructed monthly time series objects (ts)
-
-2. Visualization
-
-Time series plots for:
-
-Song popularity
-
-“Winter” search trends
-
-3. Modeling Approaches
-a) Classical Regression
-
-Model 1: Popularity ~ Time
-
-Model 2: Popularity ~ Time + Winter search index
-
-b) Autoregressive Modeling
-
-Detrended residual analysis
-
-ACF and PACF diagnostics
-
-ARMA model selection using auto.arima()
-
-**Model Performance**
-
-Model Type	AIC	RMSE
-Classical Regression (Time)	2053.57	12.99
-ARMA / Auto ARIMA	1396.34	3.84
-
-Autoregressive models significantly outperform simple regression, highlighting strong seasonality and temporal dependence.
-
-**Key Insights**
-
-The song exhibits extreme seasonality, peaking every December
-
-Long-term popularity has increased over time
-
-Including a related seasonal variable (Winter) greatly improves regression performance
-
-ARMA models best capture the structure of the data
-
-** How to Run the Analysis**
-
-Clone the repository
-
-Ensure the CSV files are in the working directory
-
-Install required packages:
-
-install.packages(c("astsa", "dplyr", "tseries", "forecast"))
 
 
-Run the R Markdown file or view the rendered .html notebook
+---
 
-**Academic Context**
+## Methodology
 
-This project was completed as part of a time series forecasting coursework assignment and is intended for educational and demonstrative purposes.
+### Data Preparation
+- Google Trends values of `<1` were converted to `0.5`
+- All count variables were converted to numeric
+- Monthly time series objects were created using `ts()`
 
-**License**
+### Visualization
+- Time series plots of song popularity
+- Time series plots of “Winter” search trends
 
-This project is provided for educational use only. Data belongs to Google Trends and Mariah Carey.
+### Modeling
+
+#### Classical Regression
+- Model 1: Popularity regressed on time
+- Model 2: Popularity regressed on time and winter search interest
+
+#### Autoregressive Modeling
+- Detrending using linear regression
+- ACF and PACF diagnostics on residuals
+- ARMA model selection using `auto.arima()`
+
+---
+
+## Model Performance Summary
+
+| Model | AIC | RMSE |
+|------|-----|------|
+| Classical Regression (Time) | 2053.57 | 12.99 |
+| ARMA / Auto ARIMA | 1396.34 | 3.84 |
+
+Autoregressive models significantly outperform simple regression, indicating strong seasonality and temporal dependence in the data.
+
+---
+
+## Key Findings
+
+- The song shows extreme seasonal behavior with consistent December peaks
+- Overall popularity has increased over time
+- Including a seasonal proxy variable improves regression fit
+- ARMA models best capture the underlying structure of the time series
+
+---
+
+## How to Run
+
+1. Clone the repository
+2. Ensure all CSV files are in the working directory
+3. Install required packages:
+   ```r
+   install.packages(c("astsa", "dplyr", "tseries", "forecast"))
